@@ -35,20 +35,18 @@ class Api::V1::ConsultationRequestsController < ApplicationController
 
 	# POST /api/v1/consultation_requests/:id/recommendations
 	def recommendations
-		if any_field_present?(recommendation_params)
-			request_id = params[:id]
-			@recommendation = Recommendation.new(
-				consultation_request_id: request_id, 
-				content: recommendation_params[:content]
-			)
-			if @recommendation.save
-				render json: @recommendation, status: :created
-			else
-				error_message = { error: "unable to create recommendation" }
-				render json: error_message, status: :bad_request
-			end
-		else 
-			error_message = { error: "validation failed" }
+		@data = MedicineApi.init
+
+		request_id = params[:id]
+		@recommendation = Recommendation.new(
+			consultation_request_id: request_id, 
+			content: @data
+		)
+		
+		if @recommendation.save
+			render json: @recommendation, status: :created
+		else
+			error_message = { error: "unable to create recommendation" }
 			render json: error_message, status: :bad_request
 		end
 	end
