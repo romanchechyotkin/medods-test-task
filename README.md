@@ -6,5 +6,7 @@
 
 #Запуск
 ```
-    
+    git clone https://github.com/romanchechyotkin/medods-test-task.git medods
+    cd medods  
+    docker compose up
 ```
