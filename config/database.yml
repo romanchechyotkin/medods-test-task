@@ -2,11 +2,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: chechyotka
-  password: 5432
-  host: localhost
-
-development:
-  <<: *default
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["POSTGRES_HOST"] %>
   database: medods
 
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["POSTGRES_HOST"] %>
+  database: medods
