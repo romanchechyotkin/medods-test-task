@@ -1,23 +1,30 @@
 class Api::V1::PatientsController < ApplicationController
 	
-	# GET /patients
+	# GET /api/v1/patients
 	def index
 			@patients = Patient.all
-			render json: @patients
+			render json: @patients, status: :ok
 	end    
 	
-		# GET /patients/:id
+	# GET /api/v1/patients/:id
 	def show
 		begin
 			@patient = Patient.find(params[:id])
-			render json: @patient, status: :created
+			render json: @patient, status: :ok
 		rescue ActiveRecord::RecordNotFound
-			# Handle the case where the record is not found
 			error_message = { error: "patient not found" }
 			render json: error_message, status: :not_found
 		end	
 	end    
 
+	# GET /api/v1/patients/:id/recommendations
+	def recommendations
+		# @patient = Patient.find(params[:id])
+		@recommendations = Recommendation.joins(:consultation_request).where("consultation_requests.patient_id = ?", params[:id])
+    render json: @recommendations
+	end    
+
+	# POST /api/v1/patients
 	def create
 		if any_field_present?(patient_params)
 			@patient = Patient.new(patient_params)

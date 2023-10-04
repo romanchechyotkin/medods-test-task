@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_195050) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_04_061615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,7 +31,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_195050) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "patients_email_key", unique: true
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.bigint "consultation_request_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["consultation_request_id"], name: "index_recommendations_on_consultation_request_id"
   end
 
   add_foreign_key "consultation_requests", "patients"
+  add_foreign_key "recommendations", "consultation_requests"
 end

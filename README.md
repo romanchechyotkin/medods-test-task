@@ -1,24 +1,4 @@
-# README
+# Тестовое задание Medods
+ссылка на тестовое https://medods.notion.site/Test-task-Intern-Dev-1faa7a1ce8e94c5ebd09525879fc3194
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
