@@ -10,3 +10,5 @@
     cd medods  
     docker compose up
 ```
+
+также присутсвтует файл medods.postman_collection.json для тестирования ендпоинтов в Postman
